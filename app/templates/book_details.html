@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block container %}
+    <div class="well">
+        <a href="{{ book['alt'] }}">
+            <img src="{{ book['image'] }}"/>
+        </a>
+        <h4>{{ book['title'] }}</h4>
+        <p><b>原名</b>: {{ book['origin_title'] }}</p>
+        {% if book['subtitle'] %}
+            <h5>{{ book['subtitle'] }}</h5>
+        {% endif %}
+        <p>
+            <b>Author</b>:
+            {% for author in book['author'] %}
+                {{ author }}
+            {% endfor %}
+        </p>
+        <p><b>ISBN</b>: {{ book['isbn13'] }}</p>
+        <p><b>Year</b>: {{ book['pubdate'] }}</p>
+        <p><b>Page</b>: {{ book['pages'] }}</p>
+        <p><b>Price</b>: {{ book['price'] }}</p>
+        <p><b>Publisher</b>: {{ book['publisher'] }}</p>
+        <p><b>Binding</b>: {{ book['binding'] }}</p>
+        <p>
+            <b>Translator</b>:
+            {% for translator in book['translator'] %}
+                {{ translator }}
+                {% if not loop.last %}
+                    &nbsp;
+                {% endif %}
+            {% endfor %}
+        </p>
+        <p><b>Catalog</b>: {{ book['catalog'] }}</p>
+        <p><b>Summary</b>: {{ book['summary'] }}</p>
+        <p><b>Author Info</b>: {{ book['author_intro'] }}</p>
+        <p>
+            <b>Tags</b>:
+            {% for tag in book['tags'] %}
+                <a href="http://book.douban.com/tag/{{ tag['title'] }}">{{ tag['title'] }}</a>({{ tag['count'] }})
+                {% if not loop.last %}
+                    &nbsp;
+                {% endif %}
+            {% endfor %}
+        </p>
+    </div>
+{% endblock %}

@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block container %}
+    <div class="well">
+        <a href="{{ movie['alt'] }}">
+            <img src="{{ movie['images']['medium'] }}"/>
+        </a>
+        <h4>{{movie['title']}}</h4>
+        <p>
+            <b>导演</b>:
+            {% for director in movie['directors'] %}
+                <a href="{{director['alt']}}">
+                    {{ director['name'] }}
+                </a>
+                {% if not loop.last %}
+                    &nbsp;/&nbsp;
+                {% endif %}
+            {% endfor %}
+        </p>
+        <p>
+            <b>主演</b>:
+            {% for cast in movie['casts'] %}
+                <a href="{{cast['alt']}}">
+                    {{ cast['name'] }}
+                </a>
+                {% if not loop.last %}
+                    &nbsp;/&nbsp;
+                {% endif %}
+            {% endfor %}
+        </p>
+        <p><b>简介</b>: {{movie['summary']}}</p>
+        <p>
+            <b>地区</b>:
+            {% for country in movie['countries'] %}
+                {{ country }}
+                {% if not loop.last %}
+                    &nbsp;/&nbsp;
+                {% endif %}
+            {% endfor %}
+        </p>
+        <p>
+            <b>类型</b>:
+            {% for genre in movie['genres'] %}
+                {{ genre }}
+                {% if not loop.last %}
+                    &nbsp;/&nbsp;
+                {% endif %}
+            {% endfor %}
+        </p>
+        <p>
+            <b>又名</b>:
+            {% for aka in movie['aka'] %}
+                {{ aka }}
+                {% if not loop.last %}
+                    &nbsp;/&nbsp;
+                {% endif %}
+            {% endfor %}
+        </p>
+        <p><b>日期</b>: {{movie['year']}}</p>
+    </div>
+{% endblock %}

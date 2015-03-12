@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block container %}
+    <div class="well">
+        <h4>{{music.title}}</h4>
+        <a href="{{music.alt}}">
+            <img src="{{music.image}}"/>
+        </a>
+        <p>
+            <b>作者</b>:
+            {% for author in music.author %}
+                {{author.name}}
+                {% if not loop.last %}
+                    &nbsp;/&nbsp;
+                {% endif %}
+            {% endfor %}
+        </p>
+        <p><b>出版商</b>: {{music.attrs.publisher[0]}}</p>
+        <p><b>歌手</b>: {{music.attrs.singer[0]}}</p>
+        <p><b>出版日期</b>: {{music.attrs.pubdate[0]}}</p>
+        <p><b>目录</b>: {{music.attrs.tracks[0]}}</p>
+        <p><b>简介</b>: {{music.summary}}</p>
+        <p>
+            <b>标签</b>:
+            {% for tag in music.tags %}
+                {{tag.name}}({{tag.count}})
+                {% if not loop.last %}
+                    &nbsp;/&nbsp;
+                {% endif %}
+            {% endfor %}
+        </p>
+    </div>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block container %}
+    <div class="well">
+        <h4>{{celebrity.name}} {{celebrity.name_en}}</h4>
+        <a href="{{celebrity.alt}}"><img src="{{celebrity.avatars.medium}}"/></a>
+        <p><b>性别</b>: {{ celebrity.gender }}</p>
+        <p><b>出生地</b>: {{ celebrity.born_place }}</p>
+        <p>
+            <b>作品</b>:
+        </p>
+        {% for work in celebrity['works'] %}
+            <p>{{work.subject.title}}</p>
+            <a href="{{work.subject.alt}}">
+                <img src="{{work.subject.images.medium}}"/>
+            </a>
+        {% endfor %}
+
+
+    </div>
+{% endblock %}
